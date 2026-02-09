@@ -1,5 +1,5 @@
 ---
-title: TDS Project 2
+title: AI Data Analyst
 emoji: ⚡
 colorFrom: blue
 colorTo: indigo
