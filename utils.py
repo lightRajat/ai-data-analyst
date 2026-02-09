@@ -2,9 +2,8 @@ import os
 from google import genai
 from google.genai import types
 import importlib
-from cryptography.fernet import Fernet
 import itertools
-from random import shuffle
+from dotenv import load_dotenv
 
 # to avoid matplotlib backend issues in headless environments
 import matplotlib
@@ -43,7 +42,7 @@ async def get_llm_response(prompt: str, request_id: int, binary_files: list = No
             # sending request without binary files
             if not binary_files:
                 response = await client.aio.models.generate_content(
-                    model="gemini-2.5-pro",
+                    model="gemini-2.5-flash",
                     contents=prompt,
                 )
             # sending request with binary files
@@ -196,20 +195,9 @@ def prepare_error_prompt(
 
     return prompt
 
-def load_gemini_api_keys(file_path='gemini-keys.txt', env_var='ENCRYPTION_KEY'):
-    encryption_key = os.getenv(env_var)
-    if not encryption_key:
-        raise ValueError(f"{env_var} is not set in environment variables")
-    
-    fernet = Fernet(encryption_key.encode())
-
-    keys = []
-    with open(file_path, 'r') as f:
-        for line in f:
-            decrypted = fernet.decrypt(line.strip().encode()).decode()
-            keys.append(decrypted)
-    shuffle(keys)
-    
+def load_gemini_api_keys():
+    load_dotenv()
+    keys = os.getenv("GEMINI_API_KEYS").split(",")
     global GEMINI_API_KEYS
     GEMINI_API_KEYS = itertools.cycle(keys)
 load_gemini_api_keys()
