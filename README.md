@@ -20,7 +20,7 @@ This app is designed for:
 
 ## 🚀 Live Deployment
 
-You can checkout the app at [https://lightrajat-ai-data-analyst.hf.space](https://lightrajat-ai-data-analyst.hf.space).
+You can checkout the app at <a target="_blank" href="https://lightrajat-ai-data-analyst.hf.space">https://lightrajat-ai-data-analyst.hf.space</a>.
 
 ## ⚙️ Features
 
@@ -84,7 +84,7 @@ Return a JSON object with keys:
 - `degree_histogram`: base64 PNG string under 100kB
 ```
 
-### Example `edges.csv` (Your Data)
+### Example `edges.csv` (Your Attachment)
 
 ```csv
 source,target
