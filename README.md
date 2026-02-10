@@ -20,7 +20,7 @@ This app is designed for:
 
 ## 🚀 Live Deployment
 
-You can send POST requests to [https://lightrajat-ai-data-analyst.hf.space](https://lightrajat-ai-data-analyst.hf.space).
+You can checkout the app at [https://lightrajat-ai-data-analyst.hf.space](https://lightrajat-ai-data-analyst.hf.space).
 
 ## ⚙️ Features
 
@@ -57,19 +57,19 @@ You can send POST requests to [https://lightrajat-ai-data-analyst.hf.space](http
    uv run uvicorn main:app --host 0.0.0.0 --port 7860 --reload
    ```
 
-## 📤 Example Request
+## 📤 Example Usage
 
-### Request
+Let's say you want to analyze a network interaction graph to find the most connected individual and visualize the network structure. You have your data in a file named `edges.csv`.
 
-```bash
-curl "http://localhost:8000" \
-     -F "questions.txt=@network.md" \
-     -F "edges.csv=@edges.csv"
-```
+### How to use the Web Dashboard
 
-> All requests necessarily include `questions.txt`, with 0 or more supporting files.
+1.  **Upload Data**: Drag and drop your `edges.csv` file into the **Attachments** zone.
+2.  **Define Analysis Task**: You need to tell the AI what to do. You can type this directly into the **Analysis Plan** text box or drag and drop a text file (e.g., `analysis.txt`).
 
-### Example `network.md`
+    > **Important**: You must explicitly define the **JSON response structure** in your request. This tells the AI exactly what format to return so the dashboard can render charts and data correctly.
+3.  **Run Analysis**
+
+### Example `analysis.txt` (Your Plan)
 
 ```md
 Use the undirected network in `edges.csv`.
@@ -84,7 +84,7 @@ Return a JSON object with keys:
 - `degree_histogram`: base64 PNG string under 100kB
 ```
 
-### Example `edges.csv`
+### Example `edges.csv` (Your Data)
 
 ```csv
 source,target
@@ -95,19 +95,6 @@ Bob,David
 Bob,Eve
 Carol,David
 David,Eve
-```
-
-## 📥 Example Response
-
-```json
-{
-    "edge_count": 7,
-    "highest_degree_node": "Bob",
-    "average_degree": 2.8,
-    "density": 0.7,
-    "shortest_path_alice_eve": 2,
-    "network_graph": "iVBORw0KGgo...(response truncated)"
-}
 ```
 
 ## 📜 License
