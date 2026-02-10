@@ -1,4 +1,5 @@
 from fastapi import FastAPI, File, UploadFile, Request
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import asyncio
@@ -9,8 +10,14 @@ import utils
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
-@app.api_route("/", methods=["GET", "POST"])
-async def home(
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    with open("index.html", "r") as f:
+        html_content = f.read()
+    return HTMLResponse(content=html_content, status_code=200)
+
+@app.post("/analyze")
+async def analyze_data(
     request: Request,
     question_file: UploadFile = File(None, alias="questions.txt")
 ):
@@ -18,9 +25,6 @@ async def home(
     start_time = time.time()
     request_id = random.randint(1000, 9999)
 
-    # incorrect HTTP method
-    if request.method == "GET":
-        return {"message": "send data first"}
     print(f"[{request_id}]: Request ID: {request_id}")
     print(f"[{request_id}]: Received {request.method} request from {request.client.host}")
 
