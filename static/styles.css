@@ -37,22 +37,37 @@ body {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background: linear-gradient(125deg, #6366f1, #a855f7, #ec4899);
-    background-size: 400% 400%;
-    animation: gradientBG 60s ease infinite;
+    overflow: hidden;
+    /* Hide the overlapping parts of the pseudo-element */
+    background-color: #6366f1;
+    /* Fallback */
 }
 
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
+.bg-container::before {
+    content: "";
+    position: absolute;
+    /* Make the layer 150% of the viewport to allow movement room */
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
 
-    50% {
-        background-position: 100% 50%;
+    background: radial-gradient(circle at center, #6366f1, #a855f7, #ec4899);
+
+    /* Use transform instead of background-position */
+    animation: rotateGradient 20s linear infinite;
+    will-change: transform;
+    /* Tells the browser to use the GPU */
+    z-index: -1;
+}
+
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
     }
 
     100% {
-        background-position: 0% 50%;
+        transform: rotate(360deg);
     }
 }
 
