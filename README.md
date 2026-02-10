@@ -20,7 +20,9 @@ This app is designed for:
 
 ## 🚀 Live Deployment
 
-You can checkout the app at <a target="_blank" href="https://lightrajat-ai-data-analyst.hf.space">https://lightrajat-ai-data-analyst.hf.space</a>.
+You can checkout the app by clicking the below image link.
+
+[![Screenshot](https://github.com/user-attachments/assets/452c9921-0af7-487e-b468-dfa0c57daa15)](https://lightrajat-ai-data-analyst.hf.space)
 
 ## ⚙️ Features
 
