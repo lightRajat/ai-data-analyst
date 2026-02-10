@@ -158,7 +158,7 @@ async def get_files(request):
     
     return text_files, binary_files
 
-def prepare_prompt(question: str, text_files={}, file_path='prompt.md') -> str:
+def prepare_prompt(question: str, text_files={}, file_path='prompts/prompt.md') -> str:
     # get prompt template
     with open(file_path, "r") as f:
         prompt = f.read().strip()
@@ -178,12 +178,7 @@ def prepare_prompt(question: str, text_files={}, file_path='prompt.md') -> str:
 
     return prompt
 
-def prepare_error_prompt(
-    question: str,
-    error: str,
-    code: str,
-    file_path='error-correction-prompt.md'
-) -> str:
+def prepare_error_prompt(question: str, error: str, code: str, file_path='prompts/error-correction-prompt.md') -> str:
     # get error correction prompt template
     with open(file_path, 'r') as f:
         prompt = f.read().strip()
